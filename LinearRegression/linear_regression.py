@@ -10,14 +10,13 @@ import math
 
 #read .csv into a DataFrame
 dataset = pd.read_csv("house_prices.csv")
-print(dataset)
+
 size=dataset['sqft_living']
 price=dataset['price']
 
 #convert dataframes to arrays
 x = np.array(size).reshape(-1,1)
 y = np.array(price).reshape(-1,1)
-print(x)
 
 #we use Linear Regression + fit(),  training
 model = LinearRegression()

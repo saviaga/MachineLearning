@@ -9,6 +9,6 @@ features = creditData[["income","age","loan"]]
 target = creditData.default
 
 model = LogisticRegression()
-predicted = cross_val_predict(model,features,target, cv=10)
+predicted = cross_val_predict(model,features,target, cv=10) #avoid overfitting or underfitting
 
 print(accuracy_score(target,predicted))

@@ -33,7 +33,7 @@ for k in range(1,100):
     cross_valid_scores.append(scores.mean())
     
 
-print("Optimal k with cross-validation: ", np.argmax(cross_valid_scores))    
+print("Optimal k with cross-validation: ", np.argmax(cross_valid_scores))    #the highest the accuracy the better the model
     
 print(confusion_matrix(target_test, predictions))
 print(accuracy_score(target_test,predictions))

@@ -20,7 +20,7 @@ tfidTransformer = TfidfTransformer()
 xTrainTfidf = tfidTransformer.fit_transform(xTrainCounts)
 
 model = MultinomialNB()
-modelfit = model.fit(xTrainTfidf, trainingData.target)
+model.fit(xTrainTfidf, trainingData.target)
 
 new = ['This has nothing to do with church or religion', 'Software engineering is getting hotter and hotter nowadays']
 xNewCounts = countVectorizer.transform(new)

@@ -19,30 +19,29 @@ images_and_labels = list(zip(digits.images, digits.target))
 #    plt.imshow(image, cmap=plt.cm.get_cmap('Greys_r'), interpolation='nearest')
 #    plt.title('Target: %i' % label)
 
-# To apply a classifier on this data, we need to flatten the image, to
+# To apply a classifier on this data, we need to 
 # turn the data in a (samples, feature) matrix:
 n_samples = len(digits.images)
 data = digits.images.reshape((n_samples, -1)) #-1 pandas automatically determines the last dimension
 #print("Data\n",data)
 
-# Create a classifier: a support vector classifier
+# Create a classifier: a Support Vector Classifier
 classifier = svm.SVC(gamma=0.001)
 
-# We learn the digits on the first half of the digits
+# Learn the digits on the first half of the digits
 trainTestSplit = int(n_samples*0.75)
 classifier.fit(data[:trainTestSplit], digits.target[:trainTestSplit])
 
-# Now predict the value of the digit on the second half:
+# Predict the value of the digit on the second half:
 expected = digits.target[trainTestSplit:]
 predicted = classifier.predict(data[trainTestSplit:])
 
-#print("Classification report for classifier %s:\n%s\n"
-#% (classifier, metrics.classification_report(expected, predicted)))
+
 print("Confusion matrix:\n%s" % metrics.confusion_matrix(expected, predicted))
 print(accuracy_score(expected, predicted))
 
 
-# let's test on the last few images
+# testing few images
 plt.imshow(digits.images[-2], cmap=plt.cm.get_cmap('Greys_r'), interpolation='nearest')
 print("Prediction for test image: ", classifier.predict(data[-2].reshape(1,-1)))
 

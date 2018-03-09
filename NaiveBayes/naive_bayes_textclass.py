@@ -13,13 +13,14 @@ trainingData = fetch_20newsgroups(subset='train', categories=categories, shuffle
 # we just count the word occurances
 countVectorizer = CountVectorizer()
 xTrainCounts = countVectorizer.fit_transform(trainingData.data)
-#print countVectorizer.vocabulary_.get(u'software')
+#print(countVectorizer.vocabulary_.get(u'religion'))
 
 # we transform the word occurances into tfidf 
 tfidTransformer = TfidfTransformer()
 xTrainTfidf = tfidTransformer.fit_transform(xTrainCounts)
 
-model = MultinomialNB().fit(xTrainTfidf, trainingData.target)
+model = MultinomialNB()
+modelfit = model.fit(xTrainTfidf, trainingData.target)
 
 new = ['This has nothing to do with church or religion', 'Software engineering is getting hotter and hotter nowadays']
 xNewCounts = countVectorizer.transform(new)
@@ -28,6 +29,6 @@ xNewTfidf = tfidTransformer.transform(xNewCounts)
 predicted = model.predict(xNewTfidf)
 
 for doc, category in zip(new,predicted):
-	print('%r --------> %s' % (doc, trainingData.target_names[category]))
+    print('%r --------> %s' % (doc, trainingData.target_names[category]))
 
 
